@@ -1,0 +1,152 @@
+<html>
+<head>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+<style>
+     body{background-image:url("https://impact.pub/wp-content/uploads/2016/05/agriculture-slide-3.jpg");
+background-size:contained;}
+        
+h1{
+background-color :Silver;
+
+text-align: center;
+}
+.body{
+	padding-left: 300px;
+}
+button
+{
+margin:8px;
+padding: 8px;
+color: white;
+text-decoration: none;
+background:green;
+width:25%;
+}
+</style>
+</head>
+<body>
+<h1>
+CHOOSE THE CROP THAT YOU ARE GROWING<br>
+IF IT IS NOT IN THE MENTIONED LIST THEN <br>
+SELECT OTHERS BUTTON.
+</h1>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
+</script>
+<script>
+function valid() {
+            //event.preventDefault(); // Prevents the form from submitting
+            const radioButtons = document.getElementsByName('crops');
+            let selectedValue = null;
+
+            for (let i = 0; i < 14; i++) {
+                if (radioButtons[i].checked) {
+                    selectedValue = radioButtons[i].value;
+                    break;
+                }
+            }
+
+            if (selectedValue != null) {
+                // Process the next step using the selectedValue
+                alert("You selected: " + selectedValue);
+                // Add your further processing logic here
+                
+                // Redirect to the next page (cul page2.html)
+                localStorage.setItem('selected',selectedValue);
+                window.location.href = "cul_page2.html";
+
+            } else {
+                // If no value is selected, show an alert
+                alert("Please select one value among these.");
+            }
+        }
+  
+</script>
+<form name="myform" action="dropdown.php" onsubmit="return valid()">
+  <div class="body">
+    <div class="row">
+      <div class="col">
+        <input type="radio" id="PADDY" name="crops" value="PADDY">
+  <label for="PADDY"><b>PADDY</b></label><br><br>
+      </div>
+      <div class="col">
+        <input type="radio" id="SUGARCANE" name="crops" value="SUGARCANE">
+  <label for="SUGARCANE"><b>SUGARCANE</b></label><br><br>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <input type="radio" id="MAIZE(CORN)" name="crops" value="MAIZE(CORN)">
+  <label for="MAIZE(CORN)"><b>MAIZE(CORN)</b></label><br><br>
+      </div>
+      <div class="col">
+        <input type="radio" id="COTTON" name="crops" value="COTTON">
+  <label for="COTTON"><b>COTTON</b></label><br><br>
+      </div>
+    </div>
+  </div>
+  <div class="body">
+    <div class="row">
+      <div class="col">
+       <input type="radio" id="CHILLIES" name="crops" value="CHILLIES">
+  <label for="CHILLIES"><b>CHILLIES</b></label><br><br>
+      </div>
+      <div class="col">
+       <input type="radio" id="JOWAR" name="crops" value="JOWAR">
+  <label for="JOWAR"><b>JOWAR</b></label><br><br>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+       <input type="radio" id="POTATO" name="crops" value="POTATO">
+  <label for="POTATO"><b>POTATO</b></label><br><br>
+      </div>
+      <div class="col">
+       <input type="radio" id="SUNFLOWER" name="crops" value="SUNFLOWER">
+  <label for="SUNFLOWER"><b>SUNFLOWER</b></label><br><br>
+      </div>
+    </div>
+  </div>
+  <div class="body">
+    <div class="row">
+      <div class="col">
+       <input type="radio" id="TEA" name="crops" value="TEA">
+  <label for="TEA"><b>TEA</b></label><br><br>
+      </div>
+      <div class="col">
+       <input type="radio" id="COFFEE" name="crops" value="COFFEE">
+  <label for="COFFEE"><b>COFFEE</b></label><br><br>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+      <input type="radio" id="PULSES" name="crops" value="PULSES">
+  <label for="PULSES"><b>PULSES</b></label><br><br>
+      </div>
+      <div class="col">
+       <input type="radio" id="GROUNDNUTS" name="crops" value="GROUNDNUTS">
+  <label for="GROUNDNUTS"><b>GROUNDNUTS</b></label><br><br>
+      </div>
+    </div>
+  </div>
+  <div class="body">
+    <div class="row">
+      <div class="col">
+      <input type="radio" id="TOMATO" name="crops" value="TOMATO">
+  <label for="TOMATO"><b>TOMATO</b></label><br><br>
+      </div>
+      <div class="col">
+       <input type="radio" id="OTHERS" name="crops" value="OTHERS">
+  <label for="OTHERS"><b>OTHERS</b></label>
+      </div>
+    </div>
+  </div>
+  </div>
+  <div class="text-center">
+    <button type="button" class="btn btn-success" onclick="valid()" href="cul_page2.html">Enter</button>
+      
+    
+  </div>
+  </form>
+</body>
+</html>

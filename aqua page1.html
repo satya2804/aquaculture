@@ -1,0 +1,86 @@
+<html>
+<head>
+<style>
+ body{background-image:url("https://dm0qx8t0i9gc9.cloudfront.net/thumbnails/video/SNc_bPaMeiw63zp8r/videoblocks-school-of-fish-sharks-swim-in-a-circle_sqhnhov3m_thumbnail-1080_01.png");
+background-size:cover;}
+h1{
+background-color :DarkGrey;
+
+text-align: center;
+}
+.center
+{
+ text-align: center;
+}
+button
+{
+margin:8px;
+padding:8px;
+background:green;
+width:25%;
+}
+</style>
+</head>
+<body>
+    <script>
+        function valid() {
+            //event.preventDefault(); // Prevents the form from submitting
+            const radioButtons = document.getElementsByName('aqua');
+            let selectedValue = null;
+
+            for (let i = 0; i < 10; i++) {
+                if (radioButtons[i].checked) {
+                    selectedValue = radioButtons[i].value;
+                    break;
+                }
+            }
+
+            if (selectedValue != null) {
+                // Process the next step using the selectedValue
+                alert("You selected: " + selectedValue);
+                // Add your further processing logic here
+                
+                // Redirect to the next page (cul page2.html)
+                localStorage.setItem('selected',selectedValue);
+                window.location.href = "aqua page2.html";
+
+            } else {
+                // If no value is selected, show an alert
+                alert("Please select one value among these.");
+            }
+        }
+  
+    </script>
+<h1>
+CHOOSE THE TYPE OF FISH THAT YOU ARE GROWING<br>
+IF IT IS NOT IN THE MENTIONED LIST THEN <br>
+SELECT OTHERS BUTTON.
+</h1>
+<div class="center">
+<input type="radio" id="KORAMENU(MURREL)" name="aqua" value="KORAMENU(MURREL)">
+<label for="KORAMENU(MURREL)"><b>KORAMENU(MURREL)</b></label><br><br>
+<input type="radio" id="BOCHA(CATTA/KATTA)" name="aqua" value="BOCHA(CATTA/KATTA)">
+<label for="BOCHA(CATTA/KATTA)"><b>BOCHA(CATTA/KATTA)</b></label><br><br>
+<input type="radio" id="TILOPIA" name="aqua" value="TILOPIA">
+<label for="TILOPIA"><b>TILOPIA</b></label><br><br>
+<input type="radio" id="ROHU" name="aqua" value="ROHU">
+<label for="ROHU"><b>ROHU</b></label><br><br>
+<input type="radio" id="TELLA CHANDUVA(PROMPRET)" name="aqua" value="TELLA CHANDUVA(PROMPRET)">
+<label for="TELLA CHANDUVA(PROMPRET)"><b>TELLA CHANDUVA(PROMPRET)</b></label><br><br>
+<input type="radio" id="PANDU GOPPA" name="aqua" value="PANDU GOPPA">
+<label for="PANDU GOPPA"><b>PANDU GOPPA</b></label><br><br>
+<input type="radio" id="VANJARAM(Macheral)" name="aqua" value="VANJARAM(Macheral)">
+<label for="VANJARAM(Macheral)"><b>VANJARAM(Macheral)</b></label><br><br>
+<input type="radio" id="ROYYALU(PRAWNS)" name="aqua" value="ROYYALU(PRAWNS)">
+<label for="ROYYALU(PRAWNS)"><b>ROYYALU(PRAWNS)</b></label><br><br>
+<input type="radio" id="TORTOISE" name="aqua" value="TORTOISE">
+<label for="TORTOISE"><b>TORTOISE</b></label><br><br>
+<!-- <input type="radio" id="SALMON(BUDATHA MAGHA)" name="aqua" value="SALMON(BUDATHA MAGHA)">
+<label for="SALMON(BUDATHA MAGHA)"><b>SALMON(BUDATHA MAGHA)</b></label><br><br> -->
+<input type="radio" id="OTHERS" name="aqua" value="OTHERS">
+<label for="OTHERS"><b>OTHERS</b></label><br><br>
+<div>
+<!--<button type="submit" onclick="valid()">ENTER</buttton><br></button> -->
+<button type="button" class="btn btn-success" onclick="valid()" href="aqua page2.html">Enter</button>
+</body>
+</html>

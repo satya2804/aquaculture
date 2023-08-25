@@ -1,0 +1,422 @@
+<html>
+<head>
+<style>
+.center
+{
+border-radius:80%;
+background-color :LightGreen;
+text-align:center;
+}
+input[type=text]
+{
+font-family:verdana;
+background:White;
+margin:8px;
+padding:8px;
+width:25%;
+}
+h1{
+background:Gray;
+text-align:center;
+}
+h2
+{
+text-align:center;
+color:Blue;
+}
+button
+{
+margin:8px;
+padding:8px;
+background:Green;
+width:25%;
+}
+</style>
+</head>
+<body>
+<h1> ENTER THE REQUIRED VALUES INTO THE COLOUMNS<br>
+     WHICH CAN BE USED TO CHECK THE WATER CONDITION.
+</h1>
+<h2>
+If the value of anyone is not known then fill
+it with 0.
+</h2>
+<div class="center">
+<label>   NITROGEN(N):</label>
+<input type="text" name="text" placeholder="Enter in ppm or mg/L" id="nitrogen" ><br>
+<label>    SODIUM(Na):</label>
+<input type="text" name="text" placeholder="Enter in ppm or mg/L" id="sodium" ><br>
+<label> MAGNESIUM(Mg):</label>
+<input type="text" name="text" placeholder="Enter in ppm or mg/L" id="magnesium" ><br>
+<label>  POTTASIUM(K):</label>
+<input type="text" name="text" placeholder="Enter in ppm or mg/L" id="potasium"><br>
+<label>   CALCIUM(Ca):</label>
+<input type="text" name="text" placeholder="Enter in ppm or mg/L" id="calcium"><br>
+<label>PHOSPHOROUS(P):</label>
+<input type="text" name="text" placeholder="Enter in ppm or mg/L" id="phosphorus"><br>
+<label> MANGANESE(Mn):</label>
+<input type="text" name="text" placeholder="Enter in ppm or mg/L" id="manganese"><br>
+<div>
+<!--<a href="cul page3.html">-->
+<button type="submit" onclick="check()">Submit</buttton><br></button>
+
+<script>
+ const value=localStorage.getItem('selected');
+     console.log(value);
+     var ind;
+     
+     
+     const cropsData = [
+  {
+    "name": "PADDY",
+    "nitrogen": 100,
+    "sodium": 50,
+    "magnesium": 70,
+    "potassium": 120,
+    "calcium": 80,
+    "phosphorus": 90,
+    "manganese": 60,
+  },
+  {
+    "name": "SUGARCANE",
+    "nitrogen": 120,
+    "sodium": 80,
+    "magnesium": 90,
+    "potassium": 150,
+    "calcium": 100,
+    "phosphorus": 70,
+    "manganese": 40,
+  },
+  {
+    "name": "MAIZE(CORN)",
+    "nitrogen": 90,
+    "sodium": 60,
+    "magnesium": 80,
+    "potassium": 110,
+    "calcium": 70,
+    "phosphorus": 80,
+    "manganese": 50,
+  },
+  {
+    "name": "COTTON",
+    nitrogen: 80,
+    sodium: 40,
+    magnesium: 60,
+    potassium: 100,
+    calcium: 60,
+    phosphorus: 100,
+    manganese: 70,
+  },
+  {
+    name: "CHILLIES",
+    nitrogen: 70,
+    sodium: 30,
+    magnesium: 50,
+    potassium: 90,
+    calcium: 50,
+    phosphorus: 60,
+    manganese: 30,
+  },
+  {
+    name: "JOWAR",
+    nitrogen: 110,
+    sodium: 70,
+    magnesium: 90,
+    potassium: 130,
+    calcium: 90,
+    phosphorus: 100,
+    manganese: 70,
+  },
+  {
+    name: "POTATO",
+    nitrogen: 80,
+    sodium: 40,
+    magnesium: 60,
+    potassium: 100,
+    calcium: 50,
+    phosphorus: 80,
+    manganese: 40,
+  },
+  {
+    name: "SUNFLOWER",
+    nitrogen: 70,
+    sodium: 50,
+    magnesium: 80,
+    potassium: 110,
+    calcium: 80,
+    phosphorus: 60,
+    manganese: 30,
+  },
+  {
+    name: "TEA",
+    nitrogen: 90,
+    sodium: 40,
+    magnesium: 70,
+    potassium: 120,
+    calcium: 80,
+    phosphorus: 80,
+    manganese: 50,
+  },
+  {
+    name: "COFFEE",
+    nitrogen: 110,
+    sodium: 50,
+    magnesium: 80,
+    potassium: 130,
+    calcium: 90,
+    phosphorus: 70,
+    manganese: 60,
+  },
+  {
+    name: "PULSES",
+    nitrogen: 80,
+    sodium: 60,
+    magnesium: 70,
+    potassium: 100,
+    calcium: 70,
+    phosphorus: 80,
+    manganese: 40,
+  },
+  {
+    name: "GROUNDNUTS",
+    nitrogen: 90,
+    sodium: 70,
+    magnesium: 90,
+    potassium: 120,
+    calcium: 90,
+    phosphorus: 100,
+    manganese: 50,
+  },
+  {
+    name: "TOMATO",
+    nitrogen: 70,
+    sodium: 40,
+    magnesium: 60,
+    potassium: 100,
+    calcium: 60,
+    phosphorus: 70,
+    manganese: 40,
+  },
+  {
+    name: "OTHERS",
+    nitrogen: 70,
+    sodium: 40,
+    magnesium: 60,
+    potassium: 100,
+    calcium: 60,
+    phosphorus: 70,
+    manganese: 40,
+  },
+];
+ 
+
+function check(){
+     
+     
+          let N=document.getElementById('nitrogen').value;
+          let Na=document.getElementById('sodium').value;
+          let Mg=document.getElementById('magnesium').value;
+          let K=document.getElementById('potasium').value;
+          let Ca=document.getElementById('calcium').value;
+          let P=document.getElementById('phosphorus').value;
+          let Mn=document.getElementById('manganese').value;
+          // console.log(N);
+          // console.log(Na);
+          // console.log(Mg);
+          // console.log(K);
+          // console.log(Ca);
+          // console.log(P);
+          // console.log(Mn);
+        
+
+         var i=cropsData.findIndex(index => index.name===value);
+         let n=cropsData[i].nitrogen;
+         let na=cropsData[i].sodium;
+         let mg=cropsData[i].magnesium;
+         let k=cropsData[i].potassium;
+         let ca=cropsData[i].calcium;
+         let p=cropsData[i].phosphorus;
+         let mn=cropsData[i].manganese;
+         var arr=[];
+         var n1;
+         if(N!=0){
+        if(N<n){
+          n1=n-N;
+          arr.push("<br/>"+'Nitrogen is low: '+n1+ ', original val : '+n);
+        }
+        else if(N==n)
+        arr.push("<br/>"+'Nitrogen is sufficient, original val : '+n);
+        else{
+          n1=N-n;
+          arr.push("<br/>"+'Nitrogen is high: '+n1+ ', original val : '+n);
+        }
+     }
+
+     if(Na!=0){
+        if(Na<na){
+          n1=na-Na;
+          arr.push("<br/>"+'Sodium is low: '+n1+ ', original val : '+na);
+        }
+        else if(Na==na)
+        arr.push("<br/>"+'Sodium is sufficient, original val : '+na);
+        else{
+          n1=Na-na;
+          arr.push("<br/>"+'Sodium is high: '+n1+ ', original val : '+na);
+        }
+     }
+
+     if(Mg!=0){
+        if(Mg<mg){
+          n1=mg-Mg;
+          arr.push("<br/>"+'Magnesium is low: '+n1+ ', original val : '+mg);
+        }
+        else if(Mg==mg)
+        arr.push("<br/>"+'Magnesium is sufficient, original val : '+mg);
+        else{
+          n1=Mg-mg;
+          arr.push("<br/>"+'Magnesium is high: '+n1+ 'original val : '+mg);
+        }
+     }
+
+     if(K!=0){
+        if(K<k){
+          n1=k-K;
+          arr.push("<br/>"+'Potasium is low: '+n1 + ', original val: '+k);
+        }
+        else if(K==k)
+        arr.push("<br/>"+'Potasium is sufficient, original val: '+k);
+        else{
+          n1=K-k;
+          arr.push("<br/>"+'Potasium is high: '+n1+ ', original val: '+k);
+        }
+     }
+
+
+     if(Ca!=0){
+        if(Ca<ca){
+          n1=ca-Ca;
+          arr.push("<br/>"+'Calcium is low: '+n1+ ', original val: '+ca);
+        }
+        else if(Ca==ca)
+        arr.push("<br/>"+'Calcium is sufficient, original val: '+ca);
+        else{
+          n1=Ca-ca;
+          arr.push("<br/>"+'Calcium is high: '+n1+ ', original val: '+ca);
+        }
+
+     }
+
+     if(P!=0){
+        if(P<p){
+          n1=p-P;
+          arr.push("<br/>"+'Phosporous is low: '+n1+ ', original val: '+p);
+        }
+        else if(P==p)
+        arr.push("<br/>"+'Phosporous is sufficient, original val: '+p);
+        else{
+          n1=P-p;
+          arr.push("<br/>"+'Phosporous is high: '+n1+ ', original val: '+p);
+        }
+     }
+
+     if(Mn!=0){
+
+        if(Mn<mn){
+          n1=mn-Mn;
+          arr.push("<br/>"+'Manganese is low: '+n1+ ', original val: '+mn);
+        }
+        else if(Mn==mn)
+        arr.push("<br/>"+'Manganese is sufficient, original val: '+mn);
+        else{
+          n1=Mn-mn;
+          arr.push("<br/>"+'Manganese is high: '+n1+ ', original val: '+mn);
+        }
+     }
+     console.log(arr);
+     localStorage.setItem('arrVal',arr);
+     window.location.href = "cul_page3.html";
+
+}
+
+// Function to categorize nutrient levels
+function categorizeNutrientLevel(level, highThreshold, lowThreshold) {
+  if (level >= highThreshold) {
+    return "High";
+  } else if (level <= lowThreshold) {
+    return "Low";
+  } else {
+    return "Moderate";
+  }
+}
+
+// Function to analyze element levels for a given crop
+function analyzeCrop(crop) {
+  const highThreshold = 100;
+  const lowThreshold = 60;
+
+  // Initialize arrays to keep track of nutrient levels
+  let highElements = [];
+  let moderateElements = [];
+  let lowElements = [];
+
+  // Analyze nutrient levels
+  for (const element in crop) {
+    if (element !== "name") {
+      const nutrientLevel = crop[element];
+      const nutrientCategory = categorizeNutrientLevel(
+        nutrientLevel,
+        highThreshold,
+        lowThreshold
+      );
+
+      if (nutrientCategory === "High") {
+        highElements.push(element);
+      } else if (nutrientCategory === "Low") {
+        lowElements.push(element);
+      } else {
+        moderateElements.push(element);
+      }
+    }
+  }
+
+  // Identify potential diseases based on nutrient levels
+  let diseases = [];
+  if (lowElements.length > 0) {
+    diseases.push("Nutrient Deficiency");
+  }
+
+  if (highElements.length > 0) {
+    diseases.push("Nutrient Toxicity");
+  }
+
+  // Provide remedies for nutrient deficiencies or imbalances
+  let remedies = [];
+  if (lowElements.includes("Nitrogen")) {
+    remedies.push("Apply nitrogen-rich fertilizer.");
+  }
+
+  if (lowElements.includes("Phosphorus")) {
+    remedies.push("Add phosphorus-rich fertilizer or organic matter.");
+  }
+
+  // Similarly, provide remedies for other nutrient deficiencies or imbalances
+
+  // Output the analysis results
+  console.log(`Crop: ${crop.name}`);
+  console.log("High Nutrient Levels: ", highElements);
+  console.log("Moderate Nutrient Levels: ", moderateElements);
+  console.log("Low Nutrient Levels: ", lowElements);
+  console.log("Potential Diseases or Issues: ", diseases);
+  console.log("Remedies: ", remedies);
+}
+
+// Call the analyzeCrop function for each crop
+cropsData.forEach((crop) => {
+  analyzeCrop(crop);
+});
+
+
+
+</script>
+</body>
+</html>

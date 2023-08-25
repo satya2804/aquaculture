@@ -1,0 +1,32 @@
+<html>
+    <head>
+    <style>
+        .name
+        {
+            font-size: 25px;
+            line-height: 1.2;
+           padding:60px;
+           align-items: center;
+           width:500;
+           text-align-last: left;
+           margin-top: 120;
+           background-color:aqua;
+           border-radius: 20px; 
+           box-shadow: 15px 15px 25px grey;
+    }
+    </style>
+    </head>
+    <body>
+         <center><div class="name"><p id="a"></p>
+         </div></center>
+        
+        
+  
+        <script >
+        const ar=localStorage.getItem("arrVal");
+        document.getElementById("a").innerHTML=ar;
+        </script>
+       
+       
+    </body>
+    </html>
