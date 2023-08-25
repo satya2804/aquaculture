@@ -1,0 +1,415 @@
+<html>
+<head>
+<style>
+.center
+{
+border-radius:80%;
+background-color :LightBlue;
+text-align:center;
+}
+input[type=text]
+{
+font-family:verdana;
+background:White;
+margin:8px;
+padding:8px;
+width:25%;
+}
+h1{
+background:Gray;
+text-align:center;
+}
+h2
+{
+text-align:center;
+color:Blue;
+}
+button
+{
+margin:8px;
+padding:8px;
+background:green;
+width:25%;
+}
+</style>
+</head>
+<body>
+<h1>
+     ENTER THE REQUIRED VALUES INTO THE COLOUMNS<br>
+     WHICH CAN BE USED TO CHECK THE WATER CONDITION.
+</h1>
+<h2>
+If the value of anyone is not known then fill
+it with 0.
+</h2>
+<div class="center">
+<label>PH VALUE:</label>
+<input type="text" name="text" placeholder="Enter in ppm or mg/L" id="a"><br>
+<label>COPPER(Cu):</label>
+<input type="text" name="text" placeholder="Enter in ppm or mg/L" id="b"><br>
+<label>IRON(Fe):</label>
+<input type="text" name="text" placeholder="Enter in ppm or mg/L" id="c"><br>
+<label>NITRATE(NO3-):</label>
+<input type="text" name="text" placeholder="Enter in ppm or mg/L" id="d"><br>
+<label>AMMONIA(NH3):</label>
+<input type="text" name="text" placeholder="Enter in ppm or mg/L" id="e"><br>
+<label>PHOSPHOROUS(P):</label>
+<input type="text" name="text" placeholder="Enter in ppm or mg/L" id="f"><br>
+<label>MANGANESE(Mn):</label>
+<input type="text" name="text" placeholder="Enter in ppm or mg/L" id="g"><br>
+<label>KH VALUE:</label>
+<input type="text" name="text" placeholder="Enter in ppm or mg/L" id="h"><br>
+<label>BLUE GREEN ALGAE:</label>
+<input type="text" name="text" placeholder="Enter in ppm or mg/L" id="i"><br>
+<label>TURBIDITY:</label>
+<input type="text" name="text" placeholder="Enter in ppm or mg/L" id="j"><br>
+<label>PARASITES:</label>
+<input type="text" name="text" placeholder="Enter in ppm or mg/L" id="k"><br>
+<label>DO(Dissolved Oxygen):</label>
+<input type="text" name="text" placeholder="Enter in ppm or mg/L" id="l"><br>
+<div>
+<button type="submit" onclick="check()">Submit</buttton><br></button>
+<script>
+     const value=localStorage.getItem('selected');
+     console.log(value);
+     const pondValues = [
+  {
+    species: 'KORAMENU(MURREL)',
+    pH: 6.5,
+    copper: 0.02, // measured in mg/L (milligrams per liter)
+    iron: 0.03,   // measured in mg/L
+    nitrate: 0.1, // measured in mg/L
+    ammonia: 0.02, // measured in mg/L
+    phosphorous: 0.08, // measured in mg/L
+    manganese: 0.01, // measured in mg/L
+    KH: 120, // measured in ppm (parts per million)
+    Bluegreenalgae: 0.05, // measured in mg/L
+    turbidity: 5, // measured in NTU (Nephelometric Turbidity Unit)
+    parasites: false,
+    Dissolvedoxygen: 5.0, // measured in mg/L
+  },
+  {
+    species: 'BOCHA (KATTA)',
+    pH: 7.0,
+    copper: 0.01,
+    iron: 0.02,
+    nitrate: 0.08,
+    ammonia: 0.02,
+    phosphorous: 0.06,
+    manganese: 0.01,
+    KH: 100,
+    Bluegreenalgae: 0.03,
+    turbidity: 8,
+    parasites: false,
+    Dissolvedoxygen: 5.5,
+  },
+  {
+    species: 'TILAPIA',
+    pH: 7.5,
+    copper: 0.015,
+    iron: 0.02,
+    nitrate: 0.05,
+    ammonia: 0.01,
+    phosphorous: 0.06,
+    manganese: 0.01,
+    KH: 80,
+    Bluegreenalgae: 0.02,
+    turbidity: 10,
+    parasites: false,
+    Dissolvedoxygen: 6.0,
+  },
+  {
+    species: 'ROHU',
+    pH: 6.8,
+    copper: 0.015,
+    iron: 0.02,
+    nitrate: 0.06,
+    ammonia: 0.015,
+    phosphorous: 0.07,
+    manganese: 0.01,
+    KH: 100,
+    Bluegreenalgae: 0.03,
+    turbidity: 6,
+    parasites: false,
+    Dissolvedoxygen: 5.5,
+  },
+  {
+    species: 'TELLA CHANDUVA(PROMPRET)',
+    pH: 7.2,
+    copper: 0.02,
+    iron: 0.03,
+    nitrate: 0.07,
+    ammonia: 0.015,
+    phosphorous: 0.05,
+    manganese: 0.02,
+    KH: 100,
+    Bluegreenalgae: 0.03,
+    turbidity: 7,
+    parasites: false,
+    Dissolvedoxygen: 5.5,
+  },
+  {
+    species: 'PANDU GOPPA',
+    pH: 7.5,
+    copper: 0.02,
+    iron: 0.03,
+    nitrate: 0.08,
+    ammonia: 0.015,
+    phosphorous: 0.06,
+    manganese: 0.01,
+    KH: 100,
+    Bluegreenalgae: 0.03,
+    turbidity: 8,
+    parasites: false,
+    Dissolvedoxygen: 6.0,
+  },
+  {
+    species: 'VANJARAM(Macheral)',
+    pH: 7.8,
+    copper: 0.01,
+    iron: 0.02,
+    nitrate: 0.08,
+    ammonia: 0.01,
+    phosphorous: 0.07,
+    manganese: 0.02,
+    KH: 90,
+   Bluegreenalgae: 0.02,
+    turbidity: 9,
+    parasites: false,
+    Dissolvedoxygen: 6.5,
+  },
+  {
+    species: 'ROYYALU (PRAWNS)',
+    pH: 7.5,
+    copper: 0.02,
+    iron: 0.02,
+    nitrate: 0.05,
+    ammonia: 0.015,
+    phosphorous: 0.05,
+    manganese: 0.01,
+    KH: 120,
+    Bluegreenalgae: 0.02,
+    turbidity: 6,
+    parasites: false,
+    Dissolvedoxygen: 6.0,
+  },
+  {
+    species: 'TORTOISE',
+    pH: 7.0,
+    copper: 0.01,
+    iron: 0.01,
+    nitrate: 0.05,
+    ammonia: 0.01,
+    phosphorous: 0.04,
+    manganese: 0.01,
+    KH: 80,
+    Bluegreenalgae: 0.02,
+    turbidity: 5,
+    parasites: false,
+    Dissolvedoxygen: 6.5,
+  },
+  {
+    species: 'OTHERS',
+    pH: 7.5,
+    copper: 0.015,
+    iron: 0.02,
+    nitrate: 0.05,
+    ammonia: 0.01,
+    phosphorous: 0.06,
+    manganese: 0.01,
+    KH: 80,
+    Bluegreenalgae: 0.02,
+    turbidity: 10,
+    parasites: false,
+    Dissolvedoxygen: 6.0,
+  },
+];
+
+function check(){
+
+       let Ph=document.getElementById('a').value;
+       let Cu=document.getElementById('b').value;
+       let Fe=document.getElementById('c').value;
+       let Ni=document.getElementById('d').value;
+       let Am=document.getElementById('e').value;
+       let P=document.getElementById('f').value;
+       let Mn=document.getElementById('g').value;
+       let Kh=document.getElementById('h').value;
+       let Ba=document.getElementById('i').value;
+       let T=document.getElementById('j').value;
+       let Pa=document.getElementById('k').value;
+       let Dox=document.getElementById('l').value;
+
+
+       var i=pondValues.findIndex(index => index.species===value);
+       let ph=pondValues[i].pH;
+       let cu=pondValues[i].copper;
+       let fe=pondValues[i].iron;
+       let ni=pondValues[i].nitrate;
+       let am=pondValues[i].ammonia;
+       let p=pondValues[i].phosphorous;
+       let mn=pondValues[i].manganese;
+       let kh=pondValues[i].KH;
+       let ba=pondValues[i].Bluegreenalgae;
+       let t=pondValues[i].turbidity;
+       let pa=pondValues[i].parasites;
+       let dox=pondValues[i].Dissolvedoxygen;
+
+       var arr=[];
+         var n1;
+         if(Ph!=0){
+        if(Ph<ph){
+          n1=ph-Ph;
+          arr.push("<br/>"+'pH value is low: '+n1+ ', original value: '+ph);
+        }
+        else if(Ph==ph)
+        arr.push("<br/>"+'pH value is sufficient, original value: '+ph);
+        else{
+          n1=Ph-ph;
+          arr.push("<br/>"+'pH value is high: '+n1+ ', original value: '+ph);
+        }
+     }
+     if(Cu!=0){
+        if(Cu<cu){
+          n1=cu-Cu;
+          arr.push("<br/>"+'Copper value is low: '+n1+ ', original value: '+cu);
+        }
+        else if(Cu==cu)
+        arr.push("<br/>"+'Copper value is sufficient, original value: '+cu);
+        else{
+          n1=Cu-cu;
+          arr.push("<br/>"+'Copper value is high: '+n1+ ', original value: '+cu);
+        }
+     }
+     if(Fe!=0){
+        if(Fe<fe){
+          n1=fe-Fe;
+          arr.push("<br/>"+'Iron value is low: '+n1+ ', original value: '+fe);
+        }
+        else if(Fe==fe)
+        arr.push("<br/>"+'Iron value is sufficient, original value: '+fe);
+        else{
+          n1=Fe-fe;
+          arr.push("<br/>"+'Iron value is high: '+n1+ ', original value: '+fe);
+        }
+     }
+     if(Ni!=0){
+        if(Ni<ni){
+          n1=ni-Ni;
+          arr.push("<br/>"+'Nitrate value is low: '+n1+ ', original value: '+ni);
+        }
+        else if(Ni==ni)
+        arr.push("<br/>"+'Nitrate value is sufficient, original value: '+ni);
+        else{
+          n1=Ni-ni;
+          arr.push("<br/>"+'Nitrate value is high: '+n1+ ', original value: '+ni);
+        }
+     }
+     if(Am!=0){
+        if(Am<am){
+          n1=am-Am;
+          arr.push("<br/>"+'Ammonia value is low: '+n1+ ', original value: '+am);
+        }
+        else if(Am==am)
+        arr.push("<br/>"+'Ammonia value is sufficient, original value: '+am);
+        else{
+          n1=Am-am;
+          arr.push("<br/>"+'Ammonia value is high: '+n1+ ', original value: '+am);
+        }
+     }
+     if(P!=0){
+        if(P<p){
+          n1=p-P;
+          arr.push("<br/>"+'Phosphorous value is low: '+Math.round(n1)+ ', original value: '+p);
+        }
+        else if(P==p)
+        arr.push("<br/>"+'Phosphorous value is sufficient, original value: '+p);
+        else{
+          n1=P-p;
+          arr.push("<br/>"+'Phosphorous value is high: '+Math.round(n1)+ ', original value: '+p);
+        }
+     }
+     if(Mn!=0){
+        if(Mn<mn){
+          n1=mn-Mn;
+         arr.push("<br/>"+'Manganese value is low: '+n1+ ', original value: '+mn);
+        }
+        else if(Mn==mn)
+        arr.push("<br/>"+'Manganese value is sufficient, original value: '+mn);
+        else{
+          n1=Mn-mn;
+          arr.push("<br/>"+'Manganese value is high: '+n1+ ', original value: '+mn);
+        }
+     }
+     if(Kh!=0){
+        if(Kh<kh){
+          n1=kh-Kh;
+          arr.push("<br/>"+'KH value is low: '+n1+ ', original value: '+kh);
+        }
+        else if(Kh==kh)
+        arr.push("<br/>"+'KH value is sufficient, original value: '+kh);
+        else{
+          n1=Kh-kh;
+          arr.push("<br/>"+'KH value is high: '+n1+ ', original value: '+kh);
+        }
+     }
+     if(Ba!=0){
+        if(Ba<ba){
+          n1=ba-Ba;
+          arr.push("<br/>"+'Algae is low: '+Math.round(n1)+ ', original value: '+ba);
+        }
+        else if(Ba==ba)
+        arr.push("<br/>"+'Algae is sufficient, original value: '+ba);
+        else{
+          n1=Ba-ba;
+          arr.push("<br/>"+'Algae is high: '+Math.round(n1)+ ', original value: '+ba);
+        }
+     }
+     if(T!=0){
+        if(T<t){
+          n1=t-T;
+          arr.push("<br/>"+'Turbidity is low: '+n1+ ', original value: '+t);
+        }
+        else if(T==t)
+        arr.push("<br/>"+'Turbidity is sufficient, original value: '+t);
+        else{
+          n1=T-t;
+          arr.push("<br/>"+'Turbidity is high: '+n1+ ', original value: '+t);
+        }
+     }
+     if(Pa!=0){
+        if(Pa==false){
+        
+          arr.push("<br/>"+'Parasites are absent');
+        }
+        else{
+          arr.push("<br/>"+'Parasites are present');
+        }
+     }
+     if(Dox!=0){
+        if(Dox<dox){
+          n1=dox-Dox;
+          arr.push("<br/>"+'Dissolved Oxygen is low: '+n1+ ', original value: '+dox);
+        }
+        else if(Dox==dox)
+        arr.push("<br/>"+'Dissolved oxygen is sufficient, original value: '+dox);
+        else{
+          n1=Dox-dox;
+          arr.push("<br/>"+'Dissolved Oxygen is high: '+n1+ ', original value: '+dox);
+        }
+     }
+
+     localStorage.setItem('arrVal',arr);
+     window.location.href = "aqua_page3.html";
+
+      
+       
+}
+
+// Example: Accessing the data for Tilapia
+// const tilapiaData = pondWaterValues.find((speciesData) => speciesData.species === 'Tilapia');
+// console.log(tilapiaData);
+
+</script>
+</body>
+</html>
